@@ -1,0 +1,30 @@
+{
+  "name": "cleanblog",
+  "version": "1.0.0",
+  "description": "CleanBlog ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koraytuncer/cleanBlog.git"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "Koray TUNCER",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/koraytuncer/cleanBlog/issues"
+  },
+  "homepage": "https://github.com/koraytuncer/cleanBlog#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "prettier": "2.5.1"
+  },
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
