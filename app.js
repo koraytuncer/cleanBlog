@@ -30,16 +30,17 @@ app.get("/", async (req, res) => {
     const npost = await NEWPOST.find({})
     res.render("index",{npost})
 })
+app.get("/postDetail/:id", async (req, res) => {
+    const postdetail = await NEWPOST.findById(req.params.id)
+    res.render("post",{postdetail})
+})
 app.get("/about", (req, res) => {
     res.render("about")
 })
 app.get("/add", (req, res) => {
+    console.log("Post Çalışıyor")
     res.render("add_post")
 })
-app.get("/add_post", (req, res) => {
-    res.render("post")
-})
-
 app.post("/npost", async (req, res) => {
     await NEWPOST.create(req.body)
     res.redirect('/')

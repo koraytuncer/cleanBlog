@@ -25,7 +25,7 @@
         <% for( let i = 0; i < npost.length; i++ ) { %>
 
         <div class="post-preview">
-          <a href="/post">
+          <a href="/postDetail/<%= npost[i].id %>">
             <h2 class="post-title">
               <%= npost[i].title %> 
             </h2>
@@ -35,7 +35,7 @@
           </a>
           <p class="post-meta">Posted by
             <a href="#">Koray Tuncer</a>
-            <%= moment().format('D. MM. YYYY')  %> </p>
+            <%= npost[i].dateCreated %></p>
         </div>
         <% } %>
         <!-- Pager -->
