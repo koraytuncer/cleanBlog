@@ -8,5 +8,5 @@ exports.getAddPage = (req, res) => {
 }
 exports.getEditPage = async (req, res) => {
   const npost = await NEWPOST.findOne({ _id: req.params.id })
-  res.render("edit_post", { npost })
+  res.render("edit_post", { npost });
 }
