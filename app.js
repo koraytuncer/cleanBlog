@@ -1,10 +1,9 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const ejs = require('ejs')
-const path = require('path')
-const moment = require("moment");
-const NEWPOST = require('./models/NewPost.js');
-
+const express = require("express")
+const ejs = require("ejs")
+const mongoose = require("mongoose")
+const methodOverride = require("method-override")
+const postController = require("./controllers/postController")
+const pageController = require("./controllers/pageController")
 
 const app = express()
 
@@ -18,36 +17,23 @@ app.set("view engine", "ejs")
 app.use(express.static("public"))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-
-//Date 
-app.use((req, res, next)=>{
-    res.locals.moment = moment;
-    next();
-  });
+app.use(
+  methodOverride("_method", {
+    methods: ["POST", "GET"],
+  })
+)
 
 //Routes
-app.get("/", async (req, res) => {
-    const npost = await NEWPOST.find({})
-    res.render("index",{npost})
-})
-app.get("/postDetail/:id", async (req, res) => {
-    const postdetail = await NEWPOST.findById(req.params.id)
-    res.render("post",{postdetail})
-})
-app.get("/about", (req, res) => {
-    res.render("about")
-})
-app.get("/add", (req, res) => {
-    console.log("Post Çalışıyor")
-    res.render("add_post")
-})
-app.post("/npost", async (req, res) => {
-    await NEWPOST.create(req.body)
-    res.redirect('/')
-})
-
+app.get("/", postController.getAllPost)
+app.get("/postDetail/:id", postController.getPost)
+app.post("/npost", postController.createPost)
+app.put("/npost/:id", postController.updatePost)
+app.delete("/npost/:id", postController.deletePost)
+app.get("/about", pageController.getAboutPage)
+app.get("/add", pageController.getAddPage)
+app.get("/npost/edit/:id", pageController.getEditPage)
 
 const port = 5000
 app.listen(port, () => {
-    console.log(`Sunucu ${port} portunda çalışmaya başladı..`)
+  console.log(`Sunucu ${port} portunda çalışmaya başladı..`)
 })

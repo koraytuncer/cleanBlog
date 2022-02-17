@@ -33,9 +33,14 @@
             <%= postdetail.dateCreated %></p>
         </div>
       </div>
+      <div class="clearfix">
+        <a class="btn btn-warning float-right" href="/npost/edit/<%= postdetail._id %>">Edit</a>
+        <a class="btn btn-danger float-right" href="/npost/<%= postdetail._id %>?_method=DELETE" onclick="return confirm('Silmek istediğinize emin misiniz?')">Delete</a>
+      </div>
     </div>
+    
   </article>
-
+  
   <hr>
   <%- include("partials/_footer.ejs") -%>
 
